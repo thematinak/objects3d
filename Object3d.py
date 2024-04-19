@@ -12,12 +12,21 @@ class Triangle:
         self.normal = np.append(n, 1)
 
 
-
 class Object3d:
-    def __init__(self,mesh: list[Triangle], pos: np.ndarray, scale: np.ndarray = np.array([1, 1, 1, 1])):
+    def __init__(self, mesh: list[Triangle], pos: np.ndarray, scale: np.ndarray = np.array([1, 1, 1, 1])):
         self.pos = pos
         self.scale = scale
-        self.mesh = mesh
+
+        self.meshM = []
+        self.normalM = []
+        for t in mesh:
+            self.meshM.append(t.vs[0])
+            self.meshM.append(t.vs[1])
+            self.meshM.append(t.vs[2])
+            self.normalM.append(t.normal)
+
+        self.meshM = np.array(self.meshM)
+        self.normalM = np.array(self.normalM)
 
 
 def make_cube() -> Object3d:

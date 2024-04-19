@@ -42,7 +42,7 @@ if __name__ == '__main__':
         angleZ += -1
         window.update()
         end = timer()
-        print(f"frame {i} was generated: {1/(end-start)}FPS")
+        print(f"frame {i} was generated: {end-start} \t {1/(end-start)}FPS")
         sleep(1/60)
 
     tkinter.mainloop()

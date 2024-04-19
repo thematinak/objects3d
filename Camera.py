@@ -1,3 +1,5 @@
+import time
+
 import numpy as np
 import tkinter as tk
 from timeit import default_timer as timer
@@ -90,18 +92,19 @@ class Camera:
         scale_w = 0.5 * self.width
         scale_h = 0.5 * self.height
         for obj in objects:
-            for tria in obj.mesh:
-                vs = tria.vs
-                vs = vs @ self.R
-                vs += obj.pos
 
-                v1 = vs[0]
-                v2 = vs[1]
-                v3 = vs[2]
-                norm = tria.normal @ self.R
-                norm = norm[:3]
+            mesh_rotated = obj.meshM @ self.R
+            mesh_rotated += obj.pos
+            normals = obj.normalM @ self.R
+            normals = normals[:, 0:3]
+
+            for i in range(0, obj.meshM.shape[0] // 3):
+                v1 = mesh_rotated[i * 3 + 0]
+                norm = normals[i]
 
                 if (v1[:3] - self.position).dot(norm) < 0:
+                    v2 = mesh_rotated[i * 3 + 1]
+                    v3 = mesh_rotated[i * 3 + 2]
                     v1 = self.project(v1)
                     v1 += 1
                     v1[0] *= scale_w
@@ -120,7 +123,10 @@ class Camera:
                     cl = self.get_color(norm)
                     to_draw.append((v1, v2, v3, cl))
 
+        start = time.time()
         to_draw = sorted(to_draw, key=lambda a: (a[0][2] + a[1][2] + a[2][2]) / 3, reverse=True)
         for v1, v2, v3, cl in to_draw:
             draw_triangle(self.canvas, v1, v2, v3, cl)
+        end = time.time()
+        print(f"draw command: {end-start}s")
 
