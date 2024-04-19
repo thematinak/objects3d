@@ -2,14 +2,14 @@ from numpy import array
 
 from Camera import Camera
 import Object3d
-from draw.TkinterGraphic import TkinterGraphic
+from draw.PygameGraphic import PygameGraphic
 
 
 if __name__ == '__main__':
     width = 800
     height = 800
 
-    graphic = TkinterGraphic(width, height)
+    graphic = PygameGraphic(width, height)
 
     camera: Camera = Camera(graphic, width, height)
 
@@ -35,4 +35,6 @@ if __name__ == '__main__':
         # angleY += 20
         angleZ += -1
 
+
     graphic.main_loop(one_tic)
+

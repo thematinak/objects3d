@@ -1,7 +1,7 @@
 # Objects3d
 
-is simple project using tkinter and numpy to render 3d objects with canvas 
+is simple project using tkinter or pygame and numpy to render 3d objects with canvas 
 
-Project is for learning purposes :).
+Project is for learning purposes.
 
-install numpy and run main.py
+install numpy and run main.py/main_pygame.py :)

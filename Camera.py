@@ -1,26 +1,20 @@
 import time
-
 import numpy as np
-import tkinter as tk
-from timeit import default_timer as timer
 from math import tan, sin, cos, radians
 
-from draw import draw_triangle
-
 from Object3d import Object3d
+from draw.AbstractGraphic import AbstractGraphic
 
 
 class Camera:
-    def __init__(self, canvas: tk.Canvas, width: int, height: int, theta: float = 90, z_near: float = 0.1, z_far: float = 1000):
-        self.canvas = canvas
-        self.width = width
-        self.height = height
+    def __init__(self, graphic: AbstractGraphic, theta: float = 90, z_near: float = 0.1, z_far: float = 1000):
+        self.graphic = graphic
         self.rotX = 0
         self.rotZ = 0
         self.light = np.array([0, 0, -1])
         self.light = self.light / np.linalg.norm(self.light)
         self.position = np.array([0, 0, 0])
-        a = width / height
+        a = self.graphic.width / self.graphic.height
         f = 1 / tan((radians(theta) * 0.5))
         q = z_far / (z_far - z_near)
 
@@ -74,23 +68,17 @@ class Camera:
 
         self.R = self.RX @ self.RY @ self.RZ
 
-    def clean(self) -> None:
-        self.canvas.delete("all")
-
     def project(self, v: np.ndarray):
         new_v = v @ self.P
         if new_v[3] != 0:
             new_v /= new_v[3]
         return new_v
 
-    def get_color(self, norm) -> str:
-        val = max(int(self.light.dot(norm) * 230), 0)
-        return '#{:02x}{:02x}{:02x}'.format(val, val, val)
-
     def show(self, objects: list[Object3d]):
+        self.graphic.clean()
         to_draw = []
-        scale_w = 0.5 * self.width
-        scale_h = 0.5 * self.height
+        scale_w = 0.5 * self.graphic.width
+        scale_h = 0.5 * self.graphic.height
         for obj in objects:
 
             mesh_rotated = obj.meshM @ self.R
@@ -120,13 +108,11 @@ class Camera:
                     v3[0] *= scale_w
                     v3[1] *= scale_h
 
-                    cl = self.get_color(norm)
+                    cl = self.graphic.get_color(norm, self.light)
                     to_draw.append((v1, v2, v3, cl))
 
-        start = time.time()
         to_draw = sorted(to_draw, key=lambda a: (a[0][2] + a[1][2] + a[2][2]) / 3, reverse=True)
         for v1, v2, v3, cl in to_draw:
-            draw_triangle(self.canvas, v1, v2, v3, cl)
-        end = time.time()
-        print(f"draw command: {end-start}s")
+            self.graphic.draw_triangle(v1, v2, v3, cl)
+        self.graphic.update()
 
