@@ -13,7 +13,7 @@ class PygameGraphic(AbstractGraphic):
         self.display_surface = pygame.display.set_mode((height, width))
 
     def clean(self):
-        self.display_surface.fill((0, 0, 0))
+        self.display_surface.fill((255, 255, 255))
 
     def draw_triangle(self, point1, point2, point3, color):
         pygame.draw.polygon(self.display_surface, color, (point1[:2], point2[:2], point3[:2]))
@@ -42,4 +42,4 @@ class PygameGraphic(AbstractGraphic):
 
             end = timer()
             print(f"frame was generated: {end - start} \t {1 / (end - start)}FPS")
-            sleep(1 / 60)
+            sleep(1 / 30)
