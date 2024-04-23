@@ -29,10 +29,10 @@ if __name__ == '__main__':
 
     def one_tic():
         global angleX, angleY, angleZ
-        camera.setRotationMatrix(angleX, angleY, angleZ)
+        camera.set_rotation_matrix(angleX, angleY, angleZ)
         camera.show(objs)
-        angleX += -5
-        # angleY += 20
-        angleZ += -1
+        angleX += 1
+        angleY += 2
+        # angleZ += -1
 
-    graphic.main_loop(one_tic)
+    graphic.main_loop(one_tic, 60)

@@ -1,3 +1,4 @@
+import numpy as np
 from numpy import array
 
 from Camera import Camera
@@ -29,12 +30,44 @@ if __name__ == '__main__':
 
     def one_tic():
         global angleX, angleY, angleZ
-        camera.setRotationMatrix(angleX, angleY, angleZ)
+        camera.set_rotation_matrix(angleX, angleY, angleZ)
         camera.show(objs)
-        angleX += -5
-        # angleY += 20
-        angleZ += -1
+        angleX += 1
+        angleY += 2
+        # angleZ += -1
 
+    def on_key(key):
+        if "r" == key:
+            camera.position_rest()
+        if "p" == key:
+            print(f"({angleX}, {angleY}, {angleZ}, {camera.yaw})")
+        if "LEFT" == key:
+            camera.move_camera_by(np.array([-1, 0, 0, 0], dtype=np.float64))
+            return
+        if "RIGHT" == key:
+            camera.move_camera_by(np.array([1, 0, 0, 0], dtype=np.float64))
+            return
+        if "UP" == key:
+            camera.move_camera_by(np.array([0, -1, 0, 0], dtype=np.float64))
+            return
+        if "DOWN" == key:
+            camera.move_camera_by(np.array([0, 1, 0, 0], dtype=np.float64))
+            return
 
-    graphic.main_loop(one_tic)
+        if "w" == key:
+            camera.move_camera_by(np.array([0, 0, 1, 0], dtype=np.float64))
+            return
+        if "s" == key:
+            camera.move_camera_by(np.array([0, 0, -1, 0], dtype=np.float64))
+            return
+        if "a" == key:
+            camera.yaw += .1
+            return
+        if "d" == key:
+            camera.yaw -= .1
+            return
+        pass
 
+    graphic.set_key_callback(on_key)
+
+    graphic.main_loop(one_tic, 60)

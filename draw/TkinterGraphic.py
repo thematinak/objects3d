@@ -15,8 +15,8 @@ class TkinterGraphic(AbstractGraphic):
     def clean(self):
         self.canvas.delete("all")
 
-    def get_color(self, norm, light) -> str:
-        val = max(int(light.dot(norm) * 230), 0)
+    def get_color(self, dot_prod: float) -> str:
+        val = max(int(dot_prod * 230), 0)
         return '#{:02x}{:02x}{:02x}'.format(val, val, val)
 
     def draw_triangle(self, point1, point2, point3, color):
@@ -30,14 +30,18 @@ class TkinterGraphic(AbstractGraphic):
     def update(self):
         self.window.update()
 
-    def main_loop(self, tic_fun):
+    def main_loop(self, tic_fun, max_fps: int):
+        last_frame = 0
+        frame_time = 1 / max_fps
         while True:
             start = timer()
 
-            tic_fun()
+            if start - last_frame > frame_time:
+                last_frame = start
+                tic_fun()
+
             self.window.update_idletasks()
             self.window.update()
 
             end = timer()
-            print(f"frame was generated: {end - start} \t {1 / (end - start)}FPS")
-            sleep(1 / 60)
+            # print(f"frame was generated: {end - start} \t {1 / (end - start)}FPS")

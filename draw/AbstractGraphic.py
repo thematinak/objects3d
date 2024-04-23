@@ -12,7 +12,7 @@ class AbstractGraphic:
     def draw_triangle(self, point1, point2, point3, color):
         pass
 
-    def get_color(self, norm, light) -> any:
+    def get_color(self, dot_prod: float) -> any:
         pass
 
     def update(self):

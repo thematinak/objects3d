@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df73b929-3e4b-4626-9ed8-06d8fe8da8cc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/draw/AbstractGraphic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/draw/PygameGraphic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/draw/TkinterGraphic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/draw/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_pygame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyMath.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draw.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Object3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/Object3d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draw/AbstractGraphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw/AbstractGraphic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draw/PygameGraphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw/PygameGraphic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draw/TkinterGraphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw/TkinterGraphic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj_file_util.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_pygame.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_pygame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +45,7 @@
     "Python.main.executor": "Run",
     "Python.main_pygame.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
@@ -126,6 +124,19 @@
       <option name="presentableId" value="Default" />
       <updated>1713435969702</updated>
     </task>
+    <task id="LOCAL-00001" summary="Make background white">
+      <option name="closed" value="true" />
+      <created>1713646376259</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713646376259</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Make background white" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make background white" />
   </component>
 </project>
